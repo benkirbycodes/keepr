@@ -15,18 +15,21 @@ namespace Keepr.Controllers
   [Route("api/[controller]")]
   public class VaultKeepsController : ControllerBase
   {
-    private readonly VaultKeepsService _vs;
-    public VaultKeepsController(VaultKeepsService vs)
+    private readonly VaultKeepsService _vks;
+    public VaultKeepsController(VaultKeepsService vks)
     {
-      _vs = vs;
+      _vks = vks;
     }
 
-    [HttpGet("{id}")]
-    public ActionResult<VaultKeep> GetByVaultId(int id)
+    [HttpGet("{id}/keeps")]
+    [Authorize]
+
+    public ActionResult<IEnumerable<Keep>> GetByVaultId(int id)
     {
       try
       {
-        return Ok(_vs.GetByVaultId(id));
+        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        return Ok(_vks.GetByVaultId(id));
       }
       catch (Exception e)
       {
@@ -42,7 +45,7 @@ namespace Keepr.Controllers
       {
         var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
         newVaultKeep.UserId = userId;
-        return Ok(_vs.Create(newVaultKeep));
+        return Ok(_vks.Create(newVaultKeep));
       }
       catch (Exception e)
       {
@@ -51,12 +54,12 @@ namespace Keepr.Controllers
     }
 
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{id}/keeps/{keepId}")]
     public ActionResult<String> Delete(int id)
     {
       try
       {
-        return Ok(_vs.Delete(id));
+        return Ok(_vks.Delete(id));
       }
       catch (Exception e)
       {

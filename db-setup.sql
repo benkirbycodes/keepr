@@ -55,3 +55,10 @@ USE keepr123;
 -- DROP TABLE IF EXISTS vaults;
 -- DROP TABLE IF EXISTS keeps;
 -- DROP TABLE IF EXISTS users;
+
+
+-- INSERT INTO keeps
+--             (name, description, img, isPrivate, views, shares, keeps)
+--             VALUES 
+--             ("yo mama", "yo", "//placehold.it/200x200", 0, 0, 0, 0);
+--             SELECT LAST_INSERT_ID();

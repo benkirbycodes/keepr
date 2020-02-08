@@ -6,36 +6,23 @@ using Keepr.Repositories;
 
 namespace Keepr.Services
 {
-  public class KeepsService
+  public class VaultsService
   {
-    private readonly KeepsRepository _repo;
-    public KeepsService(KeepsRepository repo)
+    private readonly VaultsRepository _repo;
+    public VaultsService(VaultsRepository repo)
     {
       _repo = repo;
     }
-    public IEnumerable<Keep> Get()
-    {
-      return _repo.Get();
-    }
-    internal Keep GetById(int id)
+    internal Vault GetById(int id)
     {
       var exists = _repo.GetById(id);
       if (exists == null) { throw new Exception("Invalid Id"); }
       return exists;
     }
-
-    internal Keep Create(Keep newKeep)
+    internal Vault Create(Vault newVault)
     {
-      _repo.Create(newKeep);
-      return newKeep;
-    }
-
-    internal Keep Edit(Keep update)
-    {
-      var exists = _repo.GetById(update.Id);
-      if (exists == null) { throw new Exception("Invalid Id"); }
-      _repo.Edit(update);
-      return update;
+      _repo.Create(newVault);
+      return newVault;
     }
     internal string Delete(int id)
     {
@@ -45,5 +32,9 @@ namespace Keepr.Services
       return "Successfully Deleted";
     }
 
+    internal IEnumerable<Vault> Get()
+    {
+      return _repo.Get();
+    }
   }
 }

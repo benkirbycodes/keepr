@@ -13,47 +13,34 @@ namespace Keepr.Controllers
 {
   [ApiController]
   [Route("api/[controller]")]
-  public class KeepsController : ControllerBase
+  public class VaultsController : ControllerBase
   {
-    private readonly KeepsService _ks;
-    public KeepsController(KeepsService ks)
+    private readonly VaultsService _vs;
+    public VaultsController(VaultsService vs)
     {
-      _ks = ks;
-    }
-    [HttpGet]
-    public ActionResult<IEnumerable<Keep>> Get()
-    {
-      try
-      {
-        return Ok(_ks.Get());
-      }
-      catch (Exception e)
-      {
-        return BadRequest(e.Message);
-      };
-    }
-    [HttpGet("{id}")]
-    public ActionResult<Keep> Get(int id)
-    {
-      try
-      {
-        return Ok(_ks.GetById(id));
-      }
-      catch (Exception e)
-      {
-        return BadRequest(e.Message);
-      }
+      _vs = vs;
     }
 
-    [HttpPost]
+    [HttpGet("{id}")]
+    public ActionResult<Vault> GetById(int id)
+    {
+      try
+      {
+        return Ok(_vs.GetById(id));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+    [HttpGet]
     [Authorize]
-    public ActionResult<Keep> Post([FromBody] Keep newKeep)
+    public ActionResult<IEnumerable<Vault>> Get()
     {
       try
       {
         var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-        newKeep.UserId = userId;
-        return Ok(_ks.Create(newKeep));
+        return Ok(_vs.Get());
       }
       catch (Exception e)
       {
@@ -61,26 +48,30 @@ namespace Keepr.Controllers
       }
     }
 
-    [HttpPut("{id}")]
 
-    public ActionResult<Keep> Edit([FromBody] Keep update, int id)
+    [HttpPost]
+    [Authorize]
+    public ActionResult<Vault> Post([FromBody] Vault newVault)
     {
       try
       {
-        update.Id = id;
-        return Ok(_ks.Edit(update));
+        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        newVault.UserId = userId;
+        return Ok(_vs.Create(newVault));
       }
       catch (Exception e)
       {
         return BadRequest(e.Message);
       }
     }
+
+
     [HttpDelete("{id}")]
     public ActionResult<String> Delete(int id)
     {
       try
       {
-        return Ok(_ks.Delete(id));
+        return Ok(_vs.Delete(id));
       }
       catch (Exception e)
       {

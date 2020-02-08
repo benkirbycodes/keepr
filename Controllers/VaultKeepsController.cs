@@ -13,31 +13,20 @@ namespace Keepr.Controllers
 {
   [ApiController]
   [Route("api/[controller]")]
-  public class KeepsController : ControllerBase
+  public class VaultKeepsController : ControllerBase
   {
-    private readonly KeepsService _ks;
-    public KeepsController(KeepsService ks)
+    private readonly VaultKeepsService _vs;
+    public VaultKeepsController(VaultKeepsService vs)
     {
-      _ks = ks;
+      _vs = vs;
     }
-    [HttpGet]
-    public ActionResult<IEnumerable<Keep>> Get()
-    {
-      try
-      {
-        return Ok(_ks.Get());
-      }
-      catch (Exception e)
-      {
-        return BadRequest(e.Message);
-      };
-    }
+
     [HttpGet("{id}")]
-    public ActionResult<Keep> Get(int id)
+    public ActionResult<VaultKeep> GetByVaultId(int id)
     {
       try
       {
-        return Ok(_ks.GetById(id));
+        return Ok(_vs.GetByVaultId(id));
       }
       catch (Exception e)
       {
@@ -47,13 +36,13 @@ namespace Keepr.Controllers
 
     [HttpPost]
     [Authorize]
-    public ActionResult<Keep> Post([FromBody] Keep newKeep)
+    public ActionResult<VaultKeep> Post([FromBody] VaultKeep newVaultKeep)
     {
       try
       {
         var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-        newKeep.UserId = userId;
-        return Ok(_ks.Create(newKeep));
+        newVaultKeep.UserId = userId;
+        return Ok(_vs.Create(newVaultKeep));
       }
       catch (Exception e)
       {
@@ -61,26 +50,13 @@ namespace Keepr.Controllers
       }
     }
 
-    [HttpPut("{id}")]
 
-    public ActionResult<Keep> Edit([FromBody] Keep update, int id)
-    {
-      try
-      {
-        update.Id = id;
-        return Ok(_ks.Edit(update));
-      }
-      catch (Exception e)
-      {
-        return BadRequest(e.Message);
-      }
-    }
     [HttpDelete("{id}")]
     public ActionResult<String> Delete(int id)
     {
       try
       {
-        return Ok(_ks.Delete(id));
+        return Ok(_vs.Delete(id));
       }
       catch (Exception e)
       {

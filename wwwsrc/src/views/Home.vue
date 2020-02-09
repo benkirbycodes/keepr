@@ -1,12 +1,18 @@
 <template>
-  <div class="home">
-    <h1>Welcome Home</h1>
+  <div class="home container">
+    <div class="row p-3">
+      <h1>Keepr</h1>
+      <keep />
+    </div>
   </div>
 </template>
 
 <script>
+import keep from "@/components/Keep.vue";
+
 export default {
   name: "home",
+  mounted() {},
   computed: {
     user() {
       return this.$store.state.user;
@@ -16,6 +22,9 @@ export default {
     logout() {
       this.$store.dispatch("logout");
     }
+  },
+  components: {
+    keep
   }
 };
 </script>

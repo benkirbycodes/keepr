@@ -1,11 +1,15 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import Axios from "axios";
-import router from "./router";
+import router from "../router";
+import keepsModule from "./keepsModule";
+import vaultsModule from "./vaultsModule";
 
 Vue.use(Vuex);
 
-let baseUrl = location.host.includes("localhost") ? "https://localhost:5001/" : "/";
+let baseUrl = location.host.includes("localhost")
+  ? "https://localhost:5001/"
+  : "/";
 
 let api = Axios.create({
   baseURL: baseUrl + "api/",
@@ -14,10 +18,18 @@ let api = Axios.create({
 });
 
 export default new Vuex.Store({
+  modules: {
+    keepsModule,
+    vaultsModule
+  },
   state: {
-    publicKeeps: []
+    publicKeeps: [],
+    vaults: []
   },
   mutations: {
+    setResource(state, payload) {
+      state[payload.resource] = payload.data;
+    }
   },
   actions: {
     setBearer({}, bearer) {

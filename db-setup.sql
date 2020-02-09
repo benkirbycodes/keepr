@@ -10,7 +10,7 @@ USE keepr123;
 -- );
 
 -- CREATE TABLE keeps (
---     id int NOT NULL AUTO_INCREMENT,
+--     id int NOT NULL UNIQUE AUTO_INCREMENT,
 --     name VARCHAR(255) NOT NULL,
 --     description VARCHAR(255) NOT NULL,
 --     userId VARCHAR(255),
@@ -60,5 +60,11 @@ USE keepr123;
 -- INSERT INTO keeps
 --             (name, description, img, isPrivate, views, shares, keeps)
 --             VALUES 
---             ("yo mama", "yo", "//placehold.it/200x200", 0, 0, 0, 0);
+--             ("keeTHREE", "rules", "//placehold.it/200x200", 1, 0, 0, 0);
 --             SELECT LAST_INSERT_ID();
+
+            --            INSERT INTO vaults
+            -- (name, description)
+            -- VALUES 
+            -- ("VaultOne", "Wow");
+            -- SELECT LAST_INSERT_ID();

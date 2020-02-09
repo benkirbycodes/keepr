@@ -29,7 +29,7 @@ namespace Keepr.Controllers
       try
       {
         var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-        return Ok(_vks.GetByVaultId(id));
+        return Ok(_vks.GetByVaultId(id, userId));
       }
       catch (Exception e)
       {
@@ -54,12 +54,15 @@ namespace Keepr.Controllers
     }
 
 
-    [HttpDelete("{id}/keeps/{keepId}")]
-    public ActionResult<String> Delete(int id)
+    [HttpDelete("{vaultId}/keeps/{keepId}")]
+    [Authorize]
+
+    public ActionResult<String> Delete(int vaultId, int keepId)
     {
       try
       {
-        return Ok(_vks.Delete(id));
+        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        return Ok(_vks.Delete(vaultId, keepId));
       }
       catch (Exception e)
       {

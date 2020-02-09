@@ -32,7 +32,7 @@ namespace Keepr.Repositories
     internal VaultKeep Create(VaultKeep vaultKeepData)
     {
       string sql = @"
-            INSERT INTO vaultkeeps
+            REPLACE INTO vaultkeeps
             (vaultId, keepId, userId)
             VALUES 
             (@VaultId, @KeepId, @UserId);

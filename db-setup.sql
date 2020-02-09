@@ -30,7 +30,7 @@ USE keepr123;
 --     userId VARCHAR(255) NOT NULL,
 
 --     PRIMARY KEY (id),
---     INDEX (vaultId, keepId),
+--     UNIQUE INDEX (vaultId, keepId),
 --     INDEX (userId),
 
 --     FOREIGN KEY (vaultId)
@@ -60,11 +60,11 @@ USE keepr123;
 -- INSERT INTO keeps
 --             (name, description, img, isPrivate, views, shares, keeps)
 --             VALUES 
---             ("keeTHREE", "rules", "//placehold.it/200x200", 1, 0, 0, 0);
+--             ("keepTen", "nice", "//placehold.it/200x200", 0, 0, 0, 0);
 --             SELECT LAST_INSERT_ID();
 
             --            INSERT INTO vaults
             -- (name, description)
             -- VALUES 
-            -- ("VaultOne", "Wow");
+            -- ("VaultTwelve", "Damn");
             -- SELECT LAST_INSERT_ID();

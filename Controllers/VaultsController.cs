@@ -22,10 +22,13 @@ namespace Keepr.Controllers
     }
 
     [HttpGet("{id}")]
+    [Authorize]
+
     public ActionResult<Vault> GetById(int id)
     {
       try
       {
+        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
         return Ok(_vs.GetById(id));
       }
       catch (Exception e)
@@ -67,10 +70,14 @@ namespace Keepr.Controllers
 
 
     [HttpDelete("{id}")]
+    [Authorize]
+
+
     public ActionResult<String> Delete(int id)
     {
       try
       {
+        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
         return Ok(_vs.Delete(id));
       }
       catch (Exception e)

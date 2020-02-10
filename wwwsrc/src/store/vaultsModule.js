@@ -1,19 +1,11 @@
 import Axios from "axios";
-
-let baseUrl = location.host.includes("localhost")
-  ? "https://localhost:5001/"
-  : "/";
-
-let api = Axios.create({
-  baseURL: baseUrl + "api/",
-  timeout: 3000,
-  withCredentials: true
-});
+import { api } from "./api";
 
 export default {
   actions: {
     async getVaults({ commit, dispatch }) {
       try {
+        // console.log("GETTING VAULTS:", api);
         let res = await api.get("vaults");
         commit("setResource", { resource: "vaults", data: res.data });
       } catch (error) {

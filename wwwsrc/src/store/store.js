@@ -1,22 +1,12 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import Axios from "axios";
 import router from "../router";
 import keepsModule from "./keepsModule";
 import vaultsModule from "./vaultsModule";
 import vaultKeepsModule from "./vaultKeepsModule";
+import { api } from "./api";
 
 Vue.use(Vuex);
-
-let baseUrl = location.host.includes("localhost")
-  ? "https://localhost:5001/"
-  : "/";
-
-let api = Axios.create({
-  baseURL: baseUrl + "api/",
-  timeout: 3000,
-  withCredentials: true
-});
 
 export default new Vuex.Store({
   modules: {
@@ -38,10 +28,11 @@ export default new Vuex.Store({
   },
   actions: {
     setBearer({}, bearer) {
-      api.defaults.headers.authorization = bearer;
+      api.defaults.headers.Authorization = bearer;
+      // console.log("SET THE BEARER:", api);
     },
     resetBearer() {
-      api.defaults.headers.authorization = "";
+      api.defaults.headers.Authorization = "";
     }
   }
 });

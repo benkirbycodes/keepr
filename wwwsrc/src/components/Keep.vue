@@ -11,10 +11,8 @@
           <p>V: {{keep.views}}</p>
         </div>
 
-        <div class="btn-group-sm" role="group" aria-label="Basic example">
-          <button type="button" class="btn-sm btn-secondary">Keep</button>
-          <button type="button" class="btn-sm btn-secondary">Share</button>
-          <button type="button" class="btn-sm btn-secondary">View</button>
+        <div class="btn-group-sm d-flex justify-content-between" role="group">
+          <i class="fa fa-arrow-circle-right" @click="goToKeepDetail(keep.id)"></i>
         </div>
       </div>
     </div>
@@ -26,6 +24,11 @@ export default {
   name: "keep",
   mounted() {
     this.$store.dispatch("getPublicKeeps");
+  },
+  methods: {
+    goToKeepDetail(keepId) {
+      this.$router.push({ name: "keep-detail", params: { id: keepId } });
+    }
   },
   computed: {
     keeps() {

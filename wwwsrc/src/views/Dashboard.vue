@@ -10,7 +10,7 @@
           <br />
           <label for="desc">Description</label>
           <br />
-          <input name="desc" type="text" placeholder="Description..." v-model="newKeep.desc" />
+          <input name="desc" type="text" placeholder="Description..." v-model="newKeep.description" />
           <br />
           <label for="url">Image Url</label>
           <br />
@@ -29,7 +29,12 @@
           <br />
           <label for="desc">Description</label>
           <br />
-          <input name="desc" type="text" placeholder="Description..." v-model="newVault.desc" />
+          <input
+            name="desc"
+            type="text"
+            placeholder="Description..."
+            v-model="newVault.description"
+          />
           <br />
           <button>Create</button>
         </form>
@@ -47,7 +52,7 @@ export default {
       newKeep: {
         name: "",
         img: "",
-        desc: "",
+        description: "",
         isPrivate: false,
         views: 0,
         shares: 0,
@@ -55,7 +60,7 @@ export default {
       },
       newVault: {
         name: "",
-        desc: ""
+        description: ""
       }
     };
   },
@@ -66,7 +71,7 @@ export default {
       this.newKeep = {
         name: "",
         img: "",
-        desc: "",
+        description: "",
         isPrivate: false,
         views: 0,
         shares: 0,
@@ -78,7 +83,7 @@ export default {
       this.$store.dispatch("createVault", vault);
       this.newVault = {
         name: "",
-        desc: ""
+        description: ""
       };
     }
   },

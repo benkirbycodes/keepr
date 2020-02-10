@@ -25,7 +25,7 @@ export default {
         let res = await api.delete(
           "vaultkeeps/" + vaultId + "/keeps/" + keepId
         );
-        //NOTE what is the commit/dispatch here?
+        dispatch("getKeepsByVaultId", vaultId);
       } catch (error) {
         console.error(error);
       }

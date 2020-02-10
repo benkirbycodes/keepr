@@ -30,7 +30,7 @@ export default {
     },
     async deleteVault({ commit, dispatch }, vaultId) {
       try {
-        let res = await api.delete("vaults" + vaultId);
+        let res = await api.delete("vaults/" + vaultId);
         dispatch("getVaults");
       } catch (error) {
         console.error(error);

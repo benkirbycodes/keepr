@@ -27,10 +27,10 @@ export default {
         console.error(error);
       }
     },
-    async editKeep({ commit, dispatch }, update) {
+    async editKeep({ commit, dispatch }, updatedKeep) {
       try {
-        let res = await api.put("keeps/" + update);
-        dispatch("getPublicKeeps");
+        let res = await api.put("keeps/" + updatedKeep.id, updatedKeep);
+        dispatch("getKeepById", updatedKeep.id);
       } catch (error) {
         console.error(error);
       }

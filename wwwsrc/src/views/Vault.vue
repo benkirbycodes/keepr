@@ -14,7 +14,11 @@
           </div>
 
           <div class="btn-group-sm d-flex justify-content-between" role="group">
-            <button type="button" class="btn-sm btn-secondary">Keep</button>
+            <button
+              @click="removeKeepFromVault(keep.id)"
+              type="button"
+              class="btn-sm btn-secondary"
+            >Remove</button>
             <button type="button" class="btn-sm btn-secondary">Share</button>
             <button type="button" class="btn-sm btn-secondary">View</button>
           </div>
@@ -30,6 +34,14 @@ export default {
   mounted() {
     this.$store.dispatch("getKeepsByVaultId", this.$route.params.id);
     this.$store.dispatch("getVaultById", this.$route.params.id);
+  },
+  methods: {
+    removeKeepFromVault(keepId) {
+      let vaultId = this.$route.params.id;
+      if (confirm("Are You Sure You Want To Remove This Keep?")) {
+        this.$store.dispatch("deleteVaultKeep", { vaultId, keepId });
+      }
+    }
   },
   computed: {
     keeps() {

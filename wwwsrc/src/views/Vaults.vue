@@ -7,6 +7,7 @@
       <div v-for="vault in vaults" :key="vault.id" class="col-12">
         {{vault.name}}
         <a class="fa fa-arrow-circle-right" @click="goToVault(vault.id)"></a>
+        <a class="fa fa-times" @click="deleteVault(vault.id)"></a>
       </div>
     </div>
   </div>
@@ -21,6 +22,11 @@ export default {
   methods: {
     goToVault(vaultId) {
       this.$router.push({ name: "vault", params: { id: vaultId } });
+    },
+    deleteVault(vaultId) {
+      if (confirm("Are You Sure You Want To Delete This Vault?")) {
+        this.$store.dispatch("deleteVault", vaultId);
+      }
     }
   },
   computed: {

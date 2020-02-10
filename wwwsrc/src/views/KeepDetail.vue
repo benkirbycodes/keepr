@@ -45,17 +45,48 @@ export default {
   mounted() {
     this.$store.dispatch("getKeepById", this.$route.params.id);
     this.$store.dispatch("getVaults");
-    // this.$store.dispatch("editKeep");
+    this.$store.dispatch("editKeep", this.updatedKeep);
+  },
+  data() {
+    return {
+      updatedKeep: {
+        name: this.keep.name,
+        img: this.keep.img,
+        description: this.keep.description,
+        isPrivate: this.keep.isPrivate,
+        views: this.keep.views + 1,
+        shares: this.keep.shares,
+        keeps: this.keep.keeps
+      }
+    };
   },
   methods: {
     addToVault(vaultId) {
       let vaultKeep = { keepId: this.$route.params.id, vaultId: vaultId };
       this.$store.dispatch("createVaultKeep", vaultKeep);
+      this.updateKeepCounter();
     },
     deleteKeep() {
-      this.$store.dispatch("deleteKeep", this.$route.params.id);
-      this.$router.push("/");
-    }
+      if (confirm("Are You Sure You Want To Delete This Keep?")) {
+        this.$store.dispatch("deleteKeep", this.$route.params.id);
+        this.$router.push("/");
+      }
+    },
+    updateKeepCounter() {
+      let keepCount = this.keep.keeps + 1;
+      let updatedKeepCount = {
+        id: this.keep.id,
+        name: this.keep.name,
+        img: this.keep.img,
+        description: this.keep.description,
+        isPrivate: this.keep.isPrivate,
+        views: this.keep.views + 1,
+        shares: this.keep.shares,
+        keeps: keepCount
+      };
+      this.$store.dispatch("editKeep", updatedKeepCount);
+    },
+    updateViewCounter() {}
   },
   computed: {
     keep() {

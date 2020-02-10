@@ -4,6 +4,7 @@ import Axios from "axios";
 import router from "../router";
 import keepsModule from "./keepsModule";
 import vaultsModule from "./vaultsModule";
+import vaultKeepsModule from "./vaultKeepsModule";
 
 Vue.use(Vuex);
 
@@ -20,11 +21,15 @@ let api = Axios.create({
 export default new Vuex.Store({
   modules: {
     keepsModule,
-    vaultsModule
+    vaultsModule,
+    vaultKeepsModule
   },
   state: {
     publicKeeps: [],
-    vaults: []
+    keepsPerVault: [],
+    activeKeep: {},
+    vaults: [],
+    activeVault: {}
   },
   mutations: {
     setResource(state, payload) {

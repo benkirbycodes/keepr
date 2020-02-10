@@ -1,8 +1,8 @@
 <template>
   <div class="dashboard container-fluid">
     <div class="row">
-      <div class="col-12 p-3">
-        <h1>Manage Your Keeps</h1>
+      <div class="col-6 p-3">
+        <h1>Create A Keep</h1>
         <form @submit="createKeep">
           <label for="name">Name</label>
           <br />
@@ -19,8 +19,8 @@
           <button>Create</button>
         </form>
       </div>
-      <div class="col-12 p-3">
-        <h1>Manage Your Vaults</h1>
+      <div class="col-6 p-3">
+        <h1>Create A Vault</h1>
 
         <form @submit="createVault">
           <label for="name">Name</label>
@@ -77,6 +77,7 @@ export default {
         shares: 0,
         keeps: 0
       };
+      this.$router.push("/");
     },
     createVault() {
       let vault = { ...this.newVault };
@@ -85,6 +86,7 @@ export default {
         name: "",
         description: ""
       };
+      this.$router.push("/vaults");
     }
   },
   computed: {}

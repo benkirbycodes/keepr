@@ -10,9 +10,8 @@
           <p>S: {{keep.shares}}</p>
           <p>V: {{keep.views}}</p>
         </div>
-
         <div class="btn-group-sm d-flex justify-content-between" role="group">
-          <i class="fa fa-arrow-circle-right" @click="goToKeepDetail(keep.id)"></i>
+          <button class="btn-lg btn-secondary" @click="goToKeepDetail(keep.id)">View</button>
         </div>
       </div>
     </div>
@@ -22,13 +21,32 @@
 <script>
 export default {
   name: "keep",
+  data() {
+    return {};
+  },
   mounted() {
     this.$store.dispatch("getPublicKeeps");
   },
   methods: {
     goToKeepDetail(keepId) {
       this.$router.push({ name: "keep-detail", params: { id: keepId } });
+      // this.updateViewCounter(keepId);
     }
+    //NOTE This might be the wrong place to do this?
+    // updateViewCounter(keepId) {
+    //   let viewCount = this.keep.views + 1;
+    //   let updatedViewCount = {
+    //     id: this.keep.id,
+    //     name: this.keep.name,
+    //     img: this.keep.img,
+    //     description: this.keep.description,
+    //     isPrivate: this.keep.isPrivate,
+    //     views: viewCount,
+    //     shares: this.keep.shares,
+    //     keeps: this.keep.keeps
+    //   };
+    //   this.$store.dispatch("editKeep", updatedViewCount);
+    // }
   },
   computed: {
     keeps() {

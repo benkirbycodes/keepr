@@ -45,48 +45,39 @@ export default {
   mounted() {
     this.$store.dispatch("getKeepById", this.$route.params.id);
     this.$store.dispatch("getVaults");
-    this.$store.dispatch("editKeep", this.updatedKeep);
+    this.updateViewCounter();
   },
   data() {
     return {
-      updatedKeep: {
-        name: this.keep.name,
-        img: this.keep.img,
-        description: this.keep.description,
-        isPrivate: this.keep.isPrivate,
-        views: this.keep.views + 1,
-        shares: this.keep.shares,
-        keeps: this.keep.keeps
-      }
+      activeKeep: this.$store.state.activeKeep
     };
   },
   methods: {
     addToVault(vaultId) {
       let vaultKeep = { keepId: this.$route.params.id, vaultId: vaultId };
       this.$store.dispatch("createVaultKeep", vaultKeep);
-      this.updateKeepCounter();
+      // this.$router.push({ name: "vault", params: { id: vaultId } });
+      // this.updateKeepCounter();
     },
     deleteKeep() {
       if (confirm("Are You Sure You Want To Delete This Keep?")) {
         this.$store.dispatch("deleteKeep", this.$route.params.id);
-        this.$router.push("/");
       }
-    },
-    updateKeepCounter() {
-      let keepCount = this.keep.keeps + 1;
-      let updatedKeepCount = {
-        id: this.keep.id,
-        name: this.keep.name,
-        img: this.keep.img,
-        description: this.keep.description,
-        isPrivate: this.keep.isPrivate,
-        views: this.keep.views + 1,
-        shares: this.keep.shares,
-        keeps: keepCount
-      };
-      this.$store.dispatch("editKeep", updatedKeepCount);
-    },
-    updateViewCounter() {}
+    }
+    //NOTE This doesn't work, need to figure out why
+    // updateViewCounter() {
+    //   let updatedKeepCount = {
+    //     id: this.activeKeep.id,
+    //     name: this.activeKeep.name,
+    //     img: this.activeKeep.img,
+    //     description: this.activeKeep.description,
+    //     isPrivate: this.activeKeep.isPrivate,
+    //     views: this.activeKeep.views + 1,
+    //     shares: this.activeKeep.shares,
+    //     keeps: this.activeKeep.keeps
+    //   };
+    //   this.$store.dispatch("editKeep", updatedKeepCount);
+    // }
   },
   computed: {
     keep() {

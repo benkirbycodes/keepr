@@ -2,11 +2,7 @@
   <div class="dashboard container-fluid">
     <div class="row">
       <div class="col-12">
-        <h1>DASHBOARD</h1>
-      </div>
-      <div class="col-12" v-for="vault in vaults" :key="vault.id">
-        <h3>Vaults</h3>
-        <!-- {{vault.name}} -->
+        <h1>Manage Your Keeps And Vaults</h1>
       </div>
     </div>
   </div>
@@ -14,14 +10,9 @@
 
 <script>
 export default {
-  mounted() {
-    this.$store.dispatch("getVaults");
-  },
-  computed: {
-    vaults() {
-      return this.$store.state.vaults;
-    }
-  }
+  name: "dashboard",
+  mounted() {},
+  computed: {}
 };
 </script>
 

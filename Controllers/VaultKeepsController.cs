@@ -67,6 +67,8 @@ namespace Keepr.Controllers
       try
       {
         var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        Keep update = _ks.GetById(keepId);
+        _vks.DecrementKeepCount(update);
         return Ok(_vks.Delete(vaultId, keepId));
       }
       catch (Exception e)

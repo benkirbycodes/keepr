@@ -32,6 +32,11 @@ namespace Keepr.Services
       _keepsRepo.Edit(update);
 
     }
+    internal void DecrementKeepCount(Keep update)
+    {
+      update.Keeps--;
+      _keepsRepo.Edit(update);
+    }
     internal string Delete(int vaultId, int keepId)
     {
       var exists = _repo.GetById(vaultId, keepId);

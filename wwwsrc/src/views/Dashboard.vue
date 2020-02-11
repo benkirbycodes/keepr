@@ -12,6 +12,7 @@
             type="text"
             placeholder="Name..."
             v-model="newKeep.name"
+            required
           />
           <br />
           <label for="desc">Description</label>
@@ -32,6 +33,7 @@
             type="text"
             placeholder="Img Url..."
             v-model="newKeep.img"
+            required
           />
           <br />
           <br />
@@ -40,7 +42,6 @@
       </div>
       <div class="col-12-sm col-6-m p-3 text-center mx-auto">
         <h1>Create A Vault</h1>
-
         <form @submit="createVault">
           <label for="name">Name</label>
           <br />
@@ -50,6 +51,7 @@
             type="text"
             placeholder="Name..."
             v-model="newVault.name"
+            required
           />
           <br />
           <label for="desc">Description</label>

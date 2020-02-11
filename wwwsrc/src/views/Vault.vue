@@ -6,7 +6,9 @@
       </div>
       <div class="card-columns mx-auto">
         <div v-for="keep in keeps" :key="keep.id" class="card mx-auto">
-          <img :src="keep.img" class="card-img-top" alt="..." />
+          <a @click="goToKeepDetail(keep.id)">
+            <img :src="keep.img" class="card-img-top" alt="..." />
+          </a>
           <div class="card-body">
             <h5 class="card-title">{{ keep.name }}</h5>
             <p class="card-text">{{ keep.description }}</p>
@@ -49,6 +51,11 @@ export default {
       if (confirm("Are You Sure You Want To Remove This Keep?")) {
         this.$store.dispatch("deleteVaultKeep", { vaultId, keepId });
       }
+    },
+    goToKeepDetail(keepId) {
+      this.$store.state.activeKeep = {};
+      this.$router.push({ name: "keep-detail", params: { id: keepId } });
+      this.$store.dispatch("incrementViewCount", keepId);
     }
   },
   computed: {

@@ -9,9 +9,11 @@ namespace Keepr.Services
   public class VaultKeepsService
   {
     private readonly VaultKeepsRepository _repo;
-    public VaultKeepsService(VaultKeepsRepository repo)
+    private readonly KeepsRepository _keepsRepo;
+    public VaultKeepsService(VaultKeepsRepository repo, KeepsRepository keepsRepo)
     {
       _repo = repo;
+      _keepsRepo = keepsRepo;
     }
     internal IEnumerable<Keep> GetByVaultId(int id, string userId)
     {
@@ -23,6 +25,12 @@ namespace Keepr.Services
     {
       _repo.Create(newVaultKeep);
       return newVaultKeep;
+    }
+    internal void IncrementKeepCount(Keep update)
+    {
+      update.Keeps++;
+      _keepsRepo.Edit(update);
+
     }
     internal string Delete(int vaultId, int keepId)
     {

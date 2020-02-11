@@ -52,7 +52,6 @@ export default {
   mounted() {
     this.$store.dispatch("getKeepById", this.$route.params.id);
     this.$store.dispatch("getVaults");
-    // this.updateViewCounter();
   },
   data() {
     return {
@@ -63,8 +62,6 @@ export default {
     addToVault(vaultId) {
       let vaultKeep = { keepId: this.$route.params.id, vaultId: vaultId };
       this.$store.dispatch("createVaultKeep", vaultKeep);
-      // this.$router.push({ name: "vault", params: { id: vaultId } });
-      // this.updateKeepCounter();
     },
     deleteKeep() {
       if (confirm("Are You Sure You Want To Delete This Keep?")) {
@@ -72,20 +69,6 @@ export default {
         this.$router.push("/");
       }
     }
-    //NOTE This doesn't work, need to figure out why
-    // updateViewCounter() {
-    //   let updatedKeepCount = {
-    //     id: this.activeKeep.id,
-    //     name: this.activeKeep.name,
-    //     img: this.activeKeep.img,
-    //     description: this.activeKeep.description,
-    //     isPrivate: this.activeKeep.isPrivate,
-    //     views: this.activeKeep.views + 1,
-    //     shares: this.activeKeep.shares,
-    //     keeps: this.activeKeep.keeps
-    //   };
-    //   this.$store.dispatch("editKeep", updatedKeepCount);
-    // }
   },
   computed: {
     keep() {

@@ -33,23 +33,8 @@ export default {
   methods: {
     goToKeepDetail(keepId) {
       this.$router.push({ name: "keep-detail", params: { id: keepId } });
-      // this.updateViewCounter(keepId);
+      this.$store.dispatch("incrementViewCount", keepId);
     }
-    //NOTE This might be the wrong place to do this?
-    // updateViewCounter(keepId) {
-    //   let viewCount = this.keep.views + 1;
-    //   let updatedViewCount = {
-    //     id: this.keep.id,
-    //     name: this.keep.name,
-    //     img: this.keep.img,
-    //     description: this.keep.description,
-    //     isPrivate: this.keep.isPrivate,
-    //     views: viewCount,
-    //     shares: this.keep.shares,
-    //     keeps: this.keep.keeps
-    //   };
-    //   this.$store.dispatch("editKeep", updatedViewCount);
-    // }
   },
   computed: {
     keeps() {

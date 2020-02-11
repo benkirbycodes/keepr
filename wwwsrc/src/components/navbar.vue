@@ -81,4 +81,9 @@ export default {
 .navbar-brand {
   color: white;
 }
+
+.nav-link:focus,
+.navbar-brand:focus {
+  color: grey;
+}
 </style>

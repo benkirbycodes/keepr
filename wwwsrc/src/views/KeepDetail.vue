@@ -36,7 +36,40 @@
               >
             </div>
           </div>
-          <button type="button" class="btn-lg text-white">Share</button>
+
+          <div class="dropdown">
+            <button
+              class="btn-lg dropdown-toggle text-white"
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Share
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <div
+                class="fb-share-button dropdown-item"
+                data-href="https://developers.facebook.com/docs/plugins/"
+                data-layout="button"
+                data-size="small"
+              >
+                <a
+                  target="_blank"
+                  href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
+                  class="fb-xfbml-parse-ignore"
+                  >Facebook</a
+                >
+              </div>
+              <a
+                href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+                class="twitter-share-button dropdown-item"
+                data-show-count="false"
+                >Tweet</a
+              >
+            </div>
+          </div>
           <button @click="deleteKeep" type="button" class="btn-lg text-white">
             Delete
           </button>

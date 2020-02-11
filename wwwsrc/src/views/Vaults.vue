@@ -1,8 +1,10 @@
 <template>
   <div class="vaults container-fluid bkgrnd">
-    <div class="row">
+    <div class="row p-3">
       <div class="col-12">
-        <h1 class="text-center">My Vaults</h1>
+        <h1 class="text-center">
+          My Vaults<i @click="showForm" class="fa fa-plus"></i>
+        </h1>
       </div>
       <div class="card-columns mx-auto">
         <div v-for="vault in vaults" :key="vault.id" class="card mx-auto">
@@ -31,7 +33,8 @@ export default {
       if (confirm("Are You Sure You Want To Delete This Vault?")) {
         this.$store.dispatch("deleteVault", vaultId);
       }
-    }
+    },
+    showForm() {}
   },
   computed: {
     vaults() {

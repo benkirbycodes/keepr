@@ -2,7 +2,9 @@
   <div class="home container-fluid bkgrnd">
     <div class="row p-3">
       <div class="col-12">
-        <h1 class="text-center">Keepr</h1>
+        <h1 class="text-center">
+          Keepr<i @click="showForm" class="fa fa-plus"></i>
+        </h1>
       </div>
       <keep />
     </div>
@@ -23,7 +25,8 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("logout");
-    }
+    },
+    showForm() {}
   },
   components: {
     keep

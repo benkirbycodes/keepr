@@ -1,7 +1,7 @@
 <template>
   <div class="keep card-columns mx-auto">
     <div v-for="keep in keeps" :key="keep.id" class="card mx-auto">
-      <a @click="goToKeepDetail(keep.id)">
+      <a class="img-link" @click="goToKeepDetail(keep.id)">
         <img :src="keep.img" class="card-img-top" alt="..." />
       </a>
       <div class="card-body">
@@ -12,10 +12,6 @@
           <p class="m-0">Shares: {{ keep.shares }}</p>
           <p class="m-0">Views: {{ keep.views }}</p>
         </div>
-        <div
-          class="btn-group-sm d-flex justify-content-between"
-          role="group"
-        ></div>
       </div>
     </div>
   </div>
@@ -40,7 +36,8 @@ export default {
     keeps() {
       return this.$store.state.publicKeeps;
     }
-  }
+  },
+  components: {}
 };
 </script>
 
@@ -65,5 +62,8 @@ export default {
 }
 a:hover {
   cursor: pointer;
+}
+.img-link:hover {
+  filter: brightness(75%);
 }
 </style>

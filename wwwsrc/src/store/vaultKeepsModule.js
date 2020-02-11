@@ -14,8 +14,7 @@ export default {
     async createVaultKeep({ commit, dispatch }, vaultKeep) {
       try {
         let res = await api.post("vaultkeeps", vaultKeep);
-        //NOTE Is this the right dispatch?
-        dispatch("getKeepsByVaultId", res.data.id);
+        dispatch("getKeepsByVaultId", res.data.vaultId);
       } catch (error) {
         console.error(error);
       }

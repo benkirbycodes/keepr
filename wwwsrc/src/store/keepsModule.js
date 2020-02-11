@@ -19,7 +19,6 @@ export default {
         console.error(error);
       }
     },
-
     async createKeep({ commit, dispatch }, keep) {
       try {
         let res = await api.post("keeps", keep);

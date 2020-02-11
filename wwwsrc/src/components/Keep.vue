@@ -32,7 +32,6 @@ export default {
   },
   methods: {
     goToKeepDetail(keepId) {
-      // this.$store.dispatch("incrementViewCount", keepId);
       this.$store.state.activeKeep = {};
       this.$router.push({ name: "keep-detail", params: { id: keepId } });
     }

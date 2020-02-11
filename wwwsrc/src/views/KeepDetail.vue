@@ -62,7 +62,7 @@ export default {
     addToVault(vaultId) {
       let vaultKeep = { keepId: this.$route.params.id, vaultId: vaultId };
       this.$store.dispatch("createVaultKeep", vaultKeep);
-      // this.$store.dispatch("getKeepById", this.$route.params.id);
+      this.$router.push({ name: "vault", params: { id: vaultId } });
     },
     deleteKeep() {
       if (confirm("Are You Sure You Want To Delete This Keep?")) {

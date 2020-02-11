@@ -42,8 +42,8 @@
 export default {
   name: "vault",
   mounted() {
-    this.$store.dispatch("getKeepsByVaultId", this.$route.params.id);
     this.$store.dispatch("getVaultById", this.$route.params.id);
+    this.$store.dispatch("getKeepsByVaultId", this.$route.params.id);
   },
   methods: {
     removeKeepFromVault(keepId) {

@@ -22,6 +22,8 @@ namespace Keepr.Services
       var exists = _repo.GetById(id);
       if (exists == null) { throw new Exception("Invalid Id"); }
       else if (exists.IsPrivate) { throw new Exception("This Keep Is Private"); }
+      exists.Views++;
+      _repo.Edit(exists);
       return exists;
     }
 

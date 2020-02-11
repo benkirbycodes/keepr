@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Keepr.Models;
 using Keepr.Repositories;
 
@@ -26,11 +27,14 @@ namespace Keepr.Services
       _repo.Create(newVaultKeep);
       return newVaultKeep;
     }
-    internal void IncrementKeepCount(Keep update)
+    internal void IncrementKeepCount(Keep update, int vaultId, string userId)
     {
-      update.Keeps++;
-      _keepsRepo.Edit(update);
-
+      var check = _repo.GetByVaultId(vaultId, userId);
+      if (!check.Any(k => k.Id.Equals(update.Id)))
+      {
+        update.Keeps++;
+        _keepsRepo.Edit(update);
+      }
     }
     internal void DecrementKeepCount(Keep update)
     {

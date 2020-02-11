@@ -48,8 +48,9 @@ namespace Keepr.Controllers
         var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
         newVaultKeep.UserId = userId;
         int updateId = newVaultKeep.KeepId;
+        int vaultId = newVaultKeep.VaultId;
         Keep update = _ks.GetById(updateId);
-        _vks.IncrementKeepCount(update);
+        _vks.IncrementKeepCount(update, vaultId, userId);
         return Ok(_vks.Create(newVaultKeep));
       }
       catch (Exception e)

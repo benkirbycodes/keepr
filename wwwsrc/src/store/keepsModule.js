@@ -19,16 +19,7 @@ export default {
         console.error(error);
       }
     },
-    async incrementViewCount({ commit, dispatch }, keepId) {
-      try {
-        let res = await api.get("keeps/" + keepId);
-        res.data.views += 1;
-        await api.put("keeps/" + keepId, res.data);
-        dispatch("getKeepById", keepId);
-      } catch (error) {
-        console.error(error);
-      }
-    },
+
     async createKeep({ commit, dispatch }, keep) {
       try {
         let res = await api.post("keeps", keep);

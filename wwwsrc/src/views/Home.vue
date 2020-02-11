@@ -1,7 +1,9 @@
 <template>
-  <div class="home container">
+  <div class="home container-fluid bkgrnd">
     <div class="row p-3">
-      <h1>Keepr</h1>
+      <div class="col-12">
+        <h1 class="text-center">Keepr</h1>
+      </div>
       <keep />
     </div>
   </div>
@@ -28,3 +30,14 @@ export default {
   }
 };
 </script>
+<style>
+.bkgrnd {
+  background-image: linear-gradient(to bottom right, purple, white);
+}
+.home {
+  min-height: 100vh;
+}
+h1 {
+  text-shadow: 1px 1px 2px white;
+}
+</style>

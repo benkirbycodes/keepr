@@ -11,7 +11,7 @@
           <p>V: {{keep.views}}</p>
         </div>
         <div class="btn-group-sm d-flex justify-content-between" role="group">
-          <button class="btn-lg btn-secondary" @click="goToKeepDetail(keep.id)">View</button>
+          <button class="btn-lg view-btn text-white" @click="goToKeepDetail(keep.id)">View</button>
         </div>
       </div>
     </div>
@@ -59,5 +59,17 @@ export default {
 <style>
 .card {
   max-width: 576px;
+  box-shadow: 5px 5px 2px grey;
+}
+
+.btn-lg:visited,
+.btn-lg:focus,
+.btn-lg:hover {
+  box-shadow: 2px 2px 2px black;
+  background-color: rgb(194, 3, 194);
+}
+.btn-lg {
+  box-shadow: 2px 2px 2px black;
+  background-color: purple;
 }
 </style>

@@ -1,22 +1,41 @@
 <template>
-  <div class="dashboard container-fluid">
+  <div class="dashboard container-fluid bkgrnd">
     <div class="row">
       <div class="col-6 p-3">
         <h1>Create A Keep</h1>
         <form @submit="createKeep">
           <label for="name">Name</label>
           <br />
-          <input name="name" type="text" placeholder="Name..." v-model="newKeep.name" />
+          <input
+            class="rounded"
+            name="name"
+            type="text"
+            placeholder="Name..."
+            v-model="newKeep.name"
+          />
           <br />
           <label for="desc">Description</label>
           <br />
-          <input name="desc" type="text" placeholder="Description..." v-model="newKeep.description" />
+          <input
+            class="rounded"
+            name="desc"
+            type="text"
+            placeholder="Description..."
+            v-model="newKeep.description"
+          />
           <br />
           <label for="url">Image Url</label>
           <br />
-          <input name="url" type="text" placeholder="Img Url..." v-model="newKeep.img" />
+          <input
+            class="rounded"
+            name="url"
+            type="text"
+            placeholder="Img Url..."
+            v-model="newKeep.img"
+          />
           <br />
-          <button>Create</button>
+          <br />
+          <button class="btn-lg text-white">Create</button>
         </form>
       </div>
       <div class="col-6 p-3">
@@ -25,18 +44,26 @@
         <form @submit="createVault">
           <label for="name">Name</label>
           <br />
-          <input name="name" type="text" placeholder="Name..." v-model="newVault.name" />
+          <input
+            class="rounded"
+            name="name"
+            type="text"
+            placeholder="Name..."
+            v-model="newVault.name"
+          />
           <br />
           <label for="desc">Description</label>
           <br />
           <input
+            class="rounded"
             name="desc"
             type="text"
             placeholder="Description..."
             v-model="newVault.description"
           />
           <br />
-          <button>Create</button>
+          <br />
+          <button class="btn-lg p-2 text-white">Create</button>
         </form>
       </div>
     </div>
@@ -93,4 +120,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.dashboard {
+  min-height: 100vh;
+}
+</style>

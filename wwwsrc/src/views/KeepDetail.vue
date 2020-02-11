@@ -1,5 +1,5 @@
 <template>
-  <div class="keep-detail col-6 mx-auto">
+  <div class="keep-detail container-fluid mx-auto bkgrnd">
     <div class="card mx-auto">
       <img :src="keep.img" class="card-img-top" alt="..." />
       <div class="card-body">
@@ -12,12 +12,12 @@
         </div>
 
         <div class="btn-group-sm d-flex justify-content-between" role="group">
-          <button type="button" class="btn-lg btn-secondary">Share</button>
-          <button @click="deleteKeep" type="button" class="btn-lg btn-secondary">Delete</button>
+          <button type="button" class="btn-lg text-white">Share</button>
+          <button @click="deleteKeep" type="button" class="btn-lg text-white">Delete</button>
 
           <div class="dropdown">
             <button
-              class="btn btn-secondary dropdown-toggle"
+              class="btn-lg dropdown-toggle text-white"
               type="button"
               id="dropdownMenuButton"
               data-toggle="dropdown"
@@ -45,7 +45,7 @@ export default {
   mounted() {
     this.$store.dispatch("getKeepById", this.$route.params.id);
     this.$store.dispatch("getVaults");
-    this.updateViewCounter();
+    // this.updateViewCounter();
   },
   data() {
     return {
@@ -62,6 +62,7 @@ export default {
     deleteKeep() {
       if (confirm("Are You Sure You Want To Delete This Keep?")) {
         this.$store.dispatch("deleteKeep", this.$route.params.id);
+        this.$router.push("/");
       }
     }
     //NOTE This doesn't work, need to figure out why

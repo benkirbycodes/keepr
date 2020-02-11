@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand text-white">
     <router-link class="navbar-brand" :to="{ name: 'home' }">Keepr</router-link>
     <button
       class="navbar-toggler"
@@ -63,4 +63,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.navbar {
+  background-image: linear-gradient(to bottom, black, rgb(70, 70, 70));
+}
+</style>

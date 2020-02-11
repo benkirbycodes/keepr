@@ -1,8 +1,8 @@
 <template>
-  <div class="vaults container-fluid">
+  <div class="vaults container-fluid bkgrnd">
     <div class="row">
       <div class="col-12">
-        <h1>My Vaults</h1>
+        <h1 class="text-center">My Vaults</h1>
       </div>
       <div v-for="vault in vaults" :key="vault.id" class="col-12">
         {{vault.name}}
@@ -38,4 +38,7 @@ export default {
 </script>
 
 <style>
+.vaults {
+  min-height: 100vh;
+}
 </style>

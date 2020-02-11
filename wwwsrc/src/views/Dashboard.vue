@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard container-fluid bkgrnd">
     <div class="row">
-      <div class="col-6 p-3">
+      <div class="col-12-sm col-6-m p-3 text-center mx-auto">
         <h1>Create A Keep</h1>
         <form @submit="createKeep">
           <label for="name">Name</label>
@@ -38,7 +38,7 @@
           <button class="btn-lg text-white">Create</button>
         </form>
       </div>
-      <div class="col-6 p-3">
+      <div class="col-12-sm col-6-m p-3 text-center mx-auto">
         <h1>Create A Vault</h1>
 
         <form @submit="createVault">

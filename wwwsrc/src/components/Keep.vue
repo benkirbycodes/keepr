@@ -1,18 +1,21 @@
 <template>
   <div class="keep card-columns mx-auto">
     <div v-for="keep in keeps" :key="keep.id" class="card mx-auto">
-      <img :src="keep.img" class="card-img-top" alt="..." />
+      <a @click="goToKeepDetail(keep.id)">
+        <img :src="keep.img" class="card-img-top" alt="..." />
+      </a>
       <div class="card-body">
-        <h5 class="card-title">{{keep.name}}</h5>
-        <p class="card-text">{{keep.description}}</p>
-        <div class="d-flex justify-content-between">
-          <p>K: {{keep.keeps}}</p>
-          <p>S: {{keep.shares}}</p>
-          <p>V: {{keep.views}}</p>
+        <h5 class="card-title">{{ keep.name }}</h5>
+        <p class="card-text">{{ keep.description }}</p>
+        <div class="counters p-2 d-flex rounded justify-content-between">
+          <p class="m-0">Keeps: {{ keep.keeps }}</p>
+          <p class="m-0">Shares: {{ keep.shares }}</p>
+          <p class="m-0">Views: {{ keep.views }}</p>
         </div>
-        <div class="btn-group-sm d-flex justify-content-between" role="group">
-          <button class="btn-lg view-btn text-white" @click="goToKeepDetail(keep.id)">View</button>
-        </div>
+        <div
+          class="btn-group-sm d-flex justify-content-between"
+          role="group"
+        ></div>
       </div>
     </div>
   </div>
@@ -61,6 +64,9 @@ export default {
   max-width: 576px;
   box-shadow: 5px 5px 2px grey;
 }
+.counters {
+  border: 2px solid black;
+}
 
 .btn-lg:visited,
 .btn-lg:focus,
@@ -71,5 +77,8 @@ export default {
 .btn-lg {
   box-shadow: 2px 2px 2px black;
   background-color: purple;
+}
+a:hover {
+  cursor: pointer;
 }
 </style>

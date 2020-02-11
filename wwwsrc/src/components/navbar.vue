@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand text-white">
+  <nav class="navbar navbar-expand">
     <router-link class="navbar-brand" :to="{ name: 'home' }">Keepr</router-link>
     <button
       class="navbar-toggler"
@@ -30,8 +30,8 @@
         </li>
       </ul>
       <span class="navbar-text">
-        <button class="btn btn-success" @click="login" v-if="!$auth.isAuthenticated">Login</button>
-        <button class="btn btn-danger" @click="logout" v-else>logout</button>
+        <button class="btn-lg text-white" @click="login" v-if="!$auth.isAuthenticated">Login</button>
+        <button class="btn-lg text-white" @click="logout" v-else>logout</button>
       </span>
     </div>
   </nav>
@@ -66,5 +66,9 @@ export default {
 <style>
 .navbar {
   background-image: linear-gradient(to bottom, black, rgb(70, 70, 70));
+}
+.nav-link,
+.navbar-brand {
+  color: white;
 }
 </style>

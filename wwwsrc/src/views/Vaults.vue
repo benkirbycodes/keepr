@@ -4,10 +4,14 @@
       <div class="col-12">
         <h1 class="text-center">My Vaults</h1>
       </div>
-      <div v-for="vault in vaults" :key="vault.id" class="col-12">
-        {{vault.name}}
-        <a class="fa fa-arrow-circle-right" @click="goToVault(vault.id)"></a>
-        <a class="fa fa-times" @click="deleteVault(vault.id)"></a>
+      <div class="card-columns mx-auto">
+        <div v-for="vault in vaults" :key="vault.id" class="card mx-auto">
+          <a class="fa fa-times" @click="deleteVault(vault.id)"></a>
+          <div class="card-body" @click="goToVault(vault.id)">
+            <h3>{{ vault.name }}</h3>
+            <p>{{ vault.description }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -40,5 +44,8 @@ export default {
 <style>
 .vaults {
   min-height: 100vh;
+}
+.card-body {
+  cursor: pointer;
 }
 </style>

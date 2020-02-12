@@ -20,6 +20,11 @@ namespace Keepr.Repositories
       string sql = "SELECT * FROM keeps WHERE isPrivate = 0;";
       return _db.Query<Keep>(sql);
     }
+    internal IEnumerable<Keep> GetPrivate()
+    {
+      string sql = "SELECT * FROM keeps";
+      return _db.Query<Keep>(sql);
+    }
 
     internal Keep GetById(int Id)
     {

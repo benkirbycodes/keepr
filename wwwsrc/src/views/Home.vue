@@ -4,19 +4,21 @@
       <div class="col-12">
         <h1 class="text-center">Keepr</h1>
       </div>
-      <keep />
+      <Keep :showPrivate="showPrivate" />
     </div>
   </div>
 </template>
 
 <script>
-import keep from "@/components/Keep.vue";
+import Keep from "@/components/Keep.vue";
 
 export default {
   name: "home",
   mounted() {},
   data() {
-    return {};
+    return {
+      showPrivate: false
+    };
   },
   computed: {
     user() {
@@ -29,10 +31,11 @@ export default {
     }
   },
   components: {
-    keep
+    Keep
   }
 };
 </script>
+
 <style>
 .bkgrnd {
   background-image: linear-gradient(to bottom right, purple, white);

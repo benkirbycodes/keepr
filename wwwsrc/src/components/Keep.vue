@@ -20,11 +20,16 @@
 <script>
 export default {
   name: "keep",
+  props: ["showPrivate"],
   data() {
     return {};
   },
   mounted() {
-    this.$store.dispatch("getPublicKeeps");
+    if (this.$props.showPrivate) {
+      this.$store.dispatch("getAllKeeps");
+    } else {
+      this.$store.dispatch("getPublicKeeps");
+    }
   },
   methods: {
     goToKeepDetail(keepId) {
@@ -34,7 +39,9 @@ export default {
   },
   computed: {
     keeps() {
-      return this.$store.state.publicKeeps;
+      if (this.$props.showPrivate) {
+        return this.$store.state.allKeeps;
+      } else return this.$store.state.publicKeeps;
     }
   },
   components: {}

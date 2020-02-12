@@ -11,6 +11,14 @@ export default {
         console.error(error);
       }
     },
+    async getAllKeeps({ commit, dispatch }) {
+      try {
+        let res = await api.get("keeps/private");
+        commit("setResource", { resource: "allKeeps", data: res.data });
+      } catch (error) {
+        console.error(error);
+      }
+    },
     async getKeepById({ commit, dispatch }, keepId) {
       try {
         let res = await api.get("keeps/" + keepId);

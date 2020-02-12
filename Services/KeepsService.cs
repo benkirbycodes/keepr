@@ -17,6 +17,10 @@ namespace Keepr.Services
     {
       return _repo.Get();
     }
+    public IEnumerable<Keep> GetPrivate()
+    {
+      return _repo.GetPrivate();
+    }
     internal Keep GetById(int id)
     {
       var exists = _repo.GetById(id);

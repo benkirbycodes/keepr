@@ -37,6 +37,11 @@
           />
           <br />
           <br />
+          <label for="private">Mark as Private?</label>
+          <br />
+          <input class="rounded" name="private" type="checkbox" v-model="newKeep.isPrivate" />
+          <br />
+          <br />
           <button class="btn-lg text-white">Create</button>
         </form>
       </div>
@@ -63,16 +68,21 @@
             placeholder="Description..."
             v-model="newVault.description"
           />
-          <br />
+
           <br />
           <button class="btn-lg p-2 text-white">Create</button>
         </form>
       </div>
     </div>
+    <div class="row">
+      <Keep :showPrivate="showPrivate" />
+    </div>
   </div>
 </template>
 
 <script>
+import Keep from "@/components/Keep.vue";
+
 export default {
   name: "dashboard",
   mounted() {},
@@ -90,7 +100,8 @@ export default {
       newVault: {
         name: "",
         description: ""
-      }
+      },
+      showPrivate: true
     };
   },
   methods: {
@@ -118,7 +129,9 @@ export default {
       this.$router.push("/vaults");
     }
   },
-  computed: {}
+  components: {
+    Keep
+  }
 };
 </script>
 

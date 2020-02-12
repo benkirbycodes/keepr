@@ -14,21 +14,16 @@
             <p class="card-text">{{ keep.description }}</p>
             <div class="counters p-2 rounded d-flex justify-content-between">
               <p class="m-0">Keeps: {{ keep.keeps }}</p>
-              <p class="m-0">Shares: {{ keep.shares }}</p>
+              <!-- <p class="m-0">Shares: {{ keep.shares }}</p> -->
               <p class="m-0">Views: {{ keep.views }}</p>
             </div>
 
-            <div
-              class="btn-group-lg p-2 d-flex justify-content-between"
-              role="group"
-            >
+            <div class="btn-group-lg p-2 d-flex justify-content-between" role="group">
               <button
                 @click="removeKeepFromVault(keep.id)"
                 type="button"
                 class="btn-lg text-white"
-              >
-                Remove
-              </button>
+              >Remove</button>
               <button type="button" class="btn-lg text-white">Share</button>
             </div>
           </div>

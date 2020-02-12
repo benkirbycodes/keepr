@@ -1,6 +1,6 @@
 <template>
   <div class="keep-detail container-fluid mx-auto bkgrnd">
-    <div class="card  mx-auto">
+    <div class="card mx-auto">
       <img :src="keep.img" class="card-img-top" alt="..." />
       <div class="card-body">
         <h5 class="card-title">{{ keep.name }}</h5>
@@ -11,10 +11,7 @@
           <p class="m-0">Views: {{ keep.views }}</p>
         </div>
 
-        <div
-          class="btn-group-sm p-2 d-flex justify-content-between"
-          role="group"
-        >
+        <div class="btn-group-sm p-2 d-flex justify-content-between" role="group">
           <div class="dropdown">
             <button
               class="btn-lg dropdown-toggle text-white"
@@ -23,17 +20,14 @@
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
-            >
-              Keep
-            </button>
+            >Keep</button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a
                 @click="addToVault(vault.id)"
                 v-for="vault in vaults"
                 :key="vault.id"
                 class="dropdown-item"
-                >{{ vault.name }}</a
-              >
+              >{{ vault.name }}</a>
             </div>
           </div>
 
@@ -45,9 +39,7 @@
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
-            >
-              Share
-            </button>
+            >Share</button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <div
                 class="fb-share-button dropdown-item"
@@ -59,20 +51,16 @@
                   target="_blank"
                   href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
                   class="fb-xfbml-parse-ignore"
-                  >Facebook</a
-                >
+                >Facebook</a>
               </div>
               <a
                 href="https://twitter.com/share?ref_src=twsrc%5Etfw"
                 class="twitter-share-button dropdown-item"
                 data-show-count="false"
-                >Tweet</a
-              >
+              >Tweet</a>
             </div>
           </div>
-          <button @click="deleteKeep" type="button" class="btn-lg text-white">
-            Delete
-          </button>
+          <button @click="deleteKeep" type="button" class="btn-lg text-white">Delete</button>
         </div>
       </div>
     </div>

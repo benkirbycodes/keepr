@@ -12,7 +12,7 @@
         </div>
 
         <div class="btn-group-sm p-2 d-flex justify-content-between" role="group">
-          <div class="dropdown">
+          <div v-if="$auth.isAuthenticated" class="dropdown">
             <button
               class="btn-lg dropdown-toggle text-white"
               type="button"
@@ -60,7 +60,12 @@
               >Tweet</a>
             </div>
           </div>
-          <button @click="deleteKeep" type="button" class="btn-lg text-white">Delete</button>
+          <button
+            v-if="$auth.isAuthenticated"
+            @click="deleteKeep"
+            type="button"
+            class="btn-lg text-white"
+          >Delete</button>
         </div>
       </div>
     </div>

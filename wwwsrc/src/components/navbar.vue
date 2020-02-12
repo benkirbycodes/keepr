@@ -19,28 +19,18 @@
           v-if="$auth.isAuthenticated"
           :class="{ active: $route.name == 'dashboard' }"
         >
-          <router-link class="nav-link" :to="{ name: 'dashboard' }"
-            >Dashboard</router-link
-          >
+          <router-link class="nav-link" :to="{ name: 'dashboard' }">Dashboard</router-link>
         </li>
         <li
           class="nav-item"
           v-if="$auth.isAuthenticated"
           :class="{ active: $route.name == 'vaults' }"
         >
-          <router-link class="nav-link" :to="{ name: 'vaults' }"
-            >Vaults</router-link
-          >
+          <router-link class="nav-link" :to="{ name: 'vaults' }">Vaults</router-link>
         </li>
       </ul>
       <span class="navbar-text">
-        <button
-          class="btn-lg text-white"
-          @click="login"
-          v-if="!$auth.isAuthenticated"
-        >
-          Login
-        </button>
+        <button class="btn-lg text-white" @click="login" v-if="!$auth.isAuthenticated">Login</button>
         <button class="btn-lg text-white" @click="logout" v-else>logout</button>
       </span>
     </div>
@@ -59,7 +49,6 @@ export default {
   methods: {
     async login() {
       await this.$auth.loginWithPopup();
-      debugger;
       this.$store.dispatch("setBearer", this.$auth.bearer);
       console.log("this.$auth.user: ");
       console.log(this.$auth.user);

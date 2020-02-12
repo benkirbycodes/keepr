@@ -30,7 +30,6 @@ export default new Vuex.Store({
   actions: {
     setBearer({}, bearer) {
       api.defaults.headers.Authorization = bearer;
-      // console.log("SET THE BEARER:", api);
     },
     resetBearer() {
       api.defaults.headers.Authorization = "";

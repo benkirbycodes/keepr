@@ -68,13 +68,16 @@
             placeholder="Description..."
             v-model="newVault.description"
           />
-
+          <br />
           <br />
           <button class="btn-lg p-2 text-white">Create</button>
         </form>
       </div>
     </div>
     <div class="row">
+      <div class="col-12 p-3 text-center">
+        <h1>All Your Keeps Are Belong To You</h1>
+      </div>
       <Keep :showPrivate="showPrivate" />
     </div>
   </div>

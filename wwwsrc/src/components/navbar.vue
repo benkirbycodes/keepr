@@ -40,8 +40,12 @@
 <script>
 import axios from "axios";
 
+let baseUrl = location.host.includes("localhost")
+  ? "https://localhost:5001/"
+  : "/";
+
 let _api = axios.create({
-  baseURL: "https://localhost:5001",
+  baseURL: baseUrl,
   withCredentials: true
 });
 export default {

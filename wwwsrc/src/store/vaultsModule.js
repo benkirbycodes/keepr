@@ -5,7 +5,6 @@ export default {
   actions: {
     async getVaults({ commit, dispatch }) {
       try {
-        // console.log("GETTING VAULTS:", api);
         let res = await api.get("vaults");
         commit("setResource", { resource: "vaults", data: res.data });
       } catch (error) {

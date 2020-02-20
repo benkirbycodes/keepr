@@ -9,7 +9,6 @@
         <p class="card-text">{{ keep.description }}</p>
         <div class="counters p-2 d-flex rounded justify-content-between">
           <p class="m-0">Keeps: {{ keep.keeps }}</p>
-          <!-- <p class="m-0">Shares: {{ keep.shares }}</p> -->
           <p class="m-0">Views: {{ keep.views }}</p>
         </div>
       </div>

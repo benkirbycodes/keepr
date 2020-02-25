@@ -42,7 +42,7 @@ import axios from "axios";
 
 let baseUrl = location.host.includes("localhost")
   ? "https://localhost:5001/"
-  : "/";
+  : "http://keepr123.herokuapp.com/";
 
 let _api = axios.create({
   baseURL: baseUrl,

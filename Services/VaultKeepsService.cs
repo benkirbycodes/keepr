@@ -48,6 +48,5 @@ namespace Keepr.Services
       _repo.Delete(exists.Id);
       return "Successfully Deleted";
     }
-
   }
 }

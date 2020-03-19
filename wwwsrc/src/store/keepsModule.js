@@ -11,6 +11,14 @@ export default {
         console.error(error);
       }
     },
+    async getFiltered({ commit, dispatch }, filter) {
+      try {
+        let res = await api.get("keeps/filter/" + filter);
+        commit("setResource", { resource: "publicKeeps", data: res.data });
+      } catch (error) {
+        console.error(error);
+      }
+    },
     async getAllKeeps({ commit, dispatch }) {
       try {
         let res = await api.get("keeps/private");

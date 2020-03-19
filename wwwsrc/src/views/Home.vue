@@ -11,11 +11,11 @@
               v-model="filterTerm"
               type="text"
               class="rounded"
+              required
             />
           </label>
           <button type="submit">Submit</button>
         </form>
-        <button @click="getKeeps">GetKeeps</button>
         <span v-for="(filter,i) in filters" :key="i" class="m-1 badge badge-pill badge-light">
           {{filter}}
           <i class="fa fa-times" @click="removeFilter(filter)"></i>
@@ -55,7 +55,9 @@ export default {
     },
     addFilter() {
       let filter = this.filterTerm;
-      this.$store.dispatch("addFilter", filter);
+      if (!/^[a-z0-9\s]+$/gi.test(filter)) {
+        alert("No special characters!");
+      } else this.$store.dispatch("addFilter", filter);
       this.filterTerm = "";
     },
     removeFilter(filter) {

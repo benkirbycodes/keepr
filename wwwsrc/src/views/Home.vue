@@ -1,6 +1,24 @@
 <template>
   <div class="home container-fluid bkgrnd">
     <div class="row p-3">
+      <div class="col-12 bg-dark p-2">
+        <form>
+          <label class="text-white" for="search">
+            Search
+            <input
+              name="search"
+              placeholder="Search..."
+              v-model="filterTerm"
+              type="text"
+              class="rounded"
+            />
+          </label>
+        </form>
+        <span v-for="(filter,i) in filters" :key="i" class="m-1 badge badge-pill badge-light">
+          {{filter}}
+          <i class="fa fa-times"></i>
+        </span>
+      </div>
       <div class="col-12">
         <h1 class="text-center">Keepr</h1>
       </div>
@@ -17,12 +35,16 @@ export default {
   mounted() {},
   data() {
     return {
-      showPrivate: false
+      showPrivate: false,
+      filterTerm: ""
     };
   },
   computed: {
     user() {
       return this.$store.state.user;
+    },
+    filters() {
+      return this.$store.state.filters;
     }
   },
   methods: {

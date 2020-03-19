@@ -20,7 +20,8 @@ export default new Vuex.Store({
     keepsPerVault: [],
     activeKeep: {},
     vaults: [],
-    activeVault: {}
+    activeVault: {},
+    filters: ["filter1", "filter2"]
   },
   mutations: {
     setResource(state, payload) {

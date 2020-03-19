@@ -14,12 +14,15 @@
               required
             />
           </label>
-          <button type="submit">Submit</button>
+          <button class="btn-lg text-white" type="submit">Submit</button>
         </form>
-        <span v-for="(filter,i) in filters" :key="i" class="m-1 badge badge-pill badge-light">
-          {{filter}}
-          <i class="fa fa-times" @click="removeFilter(filter)"></i>
-        </span>
+        <div v-if="filters.length" class="rounded filters">
+          <span v-for="(filter,i) in filters" :key="i" class="m-1 badge badge-pill badge-light">
+            {{filter}}
+            <i class="fa fa-times" @click="removeFilter(filter)"></i>
+          </span>
+          <i class="fa fa-times text-white text-right" @click="removeAllFilters()"></i>
+        </div>
       </div>
       <div class="col-12">
         <h1 class="text-center">Keepr</h1>
@@ -64,6 +67,9 @@ export default {
       this.$store.dispatch("removeFilter", filter);
       this.$store.dispatch("getFilteredKeeps");
     },
+    removeAllFilters() {
+      this.$store.dispatch("removeAllFilters");
+    },
     getKeeps() {
       this.$store.dispatch("getFilteredKeeps");
     }
@@ -92,5 +98,8 @@ input {
 }
 .dropform > div {
   transition-delay: 1s;
+}
+.filters {
+  border: 1px solid white;
 }
 </style>

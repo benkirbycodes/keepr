@@ -22,6 +22,10 @@ export default {
       } else {
         dispatch("getPublicKeeps");
       }
+    },
+    removeAllFilters({ commit, dispatch }) {
+      commit("setResource", { resource: "filters", data: [] });
+      dispatch("getPublicKeeps");
     }
   }
 };

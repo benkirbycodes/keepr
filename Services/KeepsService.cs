@@ -1,21 +1,42 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Keepr.Models;
 using Keepr.Repositories;
+
 
 namespace Keepr.Services
 {
   public class KeepsService
   {
     private readonly KeepsRepository _repo;
+    public List<Keep> Filtered { get; set; } = new List<Keep>();
     public KeepsService(KeepsRepository repo)
     {
       _repo = repo;
     }
     public IEnumerable<Keep> Get()
     {
+
       return _repo.Get();
+    }
+    public IEnumerable<Keep> Get(string name)
+    {//Parsing string into Array
+      var results = _repo.Get();
+      name = name.Replace('_', ' ');
+      string[] Filters = name.Split('-');
+
+      //Filter 'results' for matches in 'Filters'
+      foreach (var result in results)
+      {
+        if (Filters.Contains(result.Name))
+        {
+          Filtered.Add(result);
+        }
+      }
+
+      return Filtered;
     }
     public IEnumerable<Keep> GetPrivate()
     {

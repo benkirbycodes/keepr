@@ -32,6 +32,19 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       };
     }
+    [HttpGet("filter/{names}")]
+    public ActionResult<IEnumerable<Keep>> Get(string names)
+    {
+      try
+      {
+        return Ok(_ks.Get(names));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      };
+    }
+
     [HttpGet("{id}")]
     public ActionResult<Keep> Get(int id)
     {

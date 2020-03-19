@@ -2,7 +2,7 @@
   <div class="home container-fluid bkgrnd">
     <div class="row p-3">
       <div class="col-12 bg-dark p-2">
-        <form>
+        <form @submit.prevent="addFilter">
           <label class="text-white" for="search">
             Search
             <input
@@ -13,10 +13,11 @@
               class="rounded"
             />
           </label>
+          <button type="submit">Submit</button>
         </form>
         <span v-for="(filter,i) in filters" :key="i" class="m-1 badge badge-pill badge-light">
           {{filter}}
-          <i class="fa fa-times"></i>
+          <i class="fa fa-times" @click="removeFilter(filter)"></i>
         </span>
       </div>
       <div class="col-12">
@@ -50,6 +51,14 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("logout");
+    },
+    addFilter() {
+      let filter = this.filterTerm;
+      this.$store.dispatch("addFilter", filter);
+      this.filterTerm = "";
+    },
+    removeFilter(filter) {
+      this.$store.dispatch("removeFilter", filter);
     }
   },
   components: {

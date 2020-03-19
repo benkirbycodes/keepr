@@ -1,9 +1,9 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import router from "../router";
 import keepsModule from "./keepsModule";
 import vaultsModule from "./vaultsModule";
 import vaultKeepsModule from "./vaultKeepsModule";
+import filterModule from "./filterModule";
 import { api } from "./api";
 
 Vue.use(Vuex);
@@ -12,7 +12,8 @@ export default new Vuex.Store({
   modules: {
     keepsModule,
     vaultsModule,
-    vaultKeepsModule
+    vaultKeepsModule,
+    filterModule
   },
   state: {
     publicKeeps: [],
@@ -21,11 +22,14 @@ export default new Vuex.Store({
     activeKeep: {},
     vaults: [],
     activeVault: {},
-    filters: ["filter1", "filter2"]
+    filters: []
   },
   mutations: {
     setResource(state, payload) {
       state[payload.resource] = payload.data;
+    },
+    addResource(state, payload) {
+      state[payload.resource].push(payload.data);
     }
   },
   actions: {

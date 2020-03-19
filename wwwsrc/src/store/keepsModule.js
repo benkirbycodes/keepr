@@ -10,7 +10,8 @@ export default {
         console.error(error);
       }
     },
-    async getFiltered({ commit, dispatch }, filter) {
+    async getFilteredKeeps({ commit, dispatch }) {
+      let filter = this.state.filterString;
       try {
         let res = await api.get("keeps/filter/" + filter);
         commit("setResource", { resource: "publicKeeps", data: res.data });

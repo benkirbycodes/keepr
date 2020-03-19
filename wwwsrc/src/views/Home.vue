@@ -15,6 +15,7 @@
           </label>
           <button type="submit">Submit</button>
         </form>
+        <button @click="getKeeps">GetKeeps</button>
         <span v-for="(filter,i) in filters" :key="i" class="m-1 badge badge-pill badge-light">
           {{filter}}
           <i class="fa fa-times" @click="removeFilter(filter)"></i>
@@ -59,6 +60,10 @@ export default {
     },
     removeFilter(filter) {
       this.$store.dispatch("removeFilter", filter);
+      this.$store.dispatch("getFilteredKeeps");
+    },
+    getKeeps() {
+      this.$store.dispatch("getFilteredKeeps");
     }
   },
   components: {

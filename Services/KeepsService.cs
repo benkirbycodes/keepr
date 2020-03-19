@@ -21,21 +21,23 @@ namespace Keepr.Services
 
       return _repo.Get();
     }
-    public IEnumerable<Keep> Get(string name)
-    {//Parsing string into Array
+    public IEnumerable<Keep> GetFiltered(string name)
+    {
       var results = _repo.Get();
-      name = name.Replace('_', ' ');
+
+      //Parsing string into Filters string[]
+      name = name.Replace('_', ' ').ToLower();
       string[] Filters = name.Split('-');
 
       //Filter 'results' for matches in 'Filters'
       foreach (var result in results)
       {
-        if (Filters.Contains(result.Name))
+        string lowerName = result.Name.ToLower();
+        if (Filters.Contains(lowerName))
         {
           Filtered.Add(result);
         }
       }
-
       return Filtered;
     }
     public IEnumerable<Keep> GetPrivate()

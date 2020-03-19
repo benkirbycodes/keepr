@@ -33,11 +33,11 @@ namespace Keepr.Controllers
       };
     }
     [HttpGet("filter/{names}")]
-    public ActionResult<IEnumerable<Keep>> Get(string names)
+    public ActionResult<IEnumerable<Keep>> GetFiltered(string names)
     {
       try
       {
-        return Ok(_ks.Get(names));
+        return Ok(_ks.GetFiltered(names));
       }
       catch (Exception e)
       {

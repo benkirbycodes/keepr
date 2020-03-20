@@ -19,13 +19,13 @@ namespace Keepr.Services
 
       return _repo.Get();
     }
-    public IEnumerable<Keep> GetFiltered(string name)
+    public IEnumerable<Keep> GetFiltered(string filters)
     {
       var results = _repo.Get();
 
       //Parsing string into Filters string[]
-      name = name.Replace('_', ' ').ToLower();
-      string[] Filters = name.Split('-');
+      filters = filters.Replace('_', ' ').ToLower();
+      string[] Filters = filters.Split('-');
 
       //Filter 'results' for those that contain filters in Name or Desc
       foreach (var result in results)

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Keepr.Interfaces;
 using Keepr.Models;
 using Keepr.Repositories;
 
@@ -14,6 +15,7 @@ namespace Keepr.Services
     {
       _repo = repo;
     }
+
     public IEnumerable<Keep> Get()
     {
 
@@ -24,6 +26,10 @@ namespace Keepr.Services
       var results = _repo.Get();
 
       //Parsing string into Filters string[]
+      if (filters == null)
+      {
+        return results;
+      }
       filters = filters.Replace('_', ' ').ToLower();
       string[] Filters = filters.Split('-');
 

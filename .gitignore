@@ -18,6 +18,7 @@ mono_crash.*
 
 appsettings.*
 
+KeeprSearchFilter.mov
 
 # Build results
 [Dd]ebug/

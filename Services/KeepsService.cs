@@ -29,7 +29,7 @@ namespace Keepr.Services
       name = name.Replace('_', ' ').ToLower();
       string[] Filters = name.Split('-');
 
-      //Filter 'results' for matches in 'Filters'
+      //Filter 'results' for those that contain filters in Name or Desc
       foreach (var result in results)
       {
         string lowerName = result.Name.ToLower();

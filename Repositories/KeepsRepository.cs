@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Data;
 using Keepr.Models;
 using Dapper;
+using Keepr.Interfaces;
 
 namespace Keepr.Repositories
 {
-  public class KeepsRepository
+  public class KeepsRepository : IKeepsRepository
   {
     private readonly IDbConnection _db;
 
@@ -15,25 +16,25 @@ namespace Keepr.Repositories
       _db = db;
     }
 
-    internal IEnumerable<Keep> Get()
+    public IEnumerable<Keep> Get()
     {
       string sql = "SELECT * FROM keeps WHERE isPrivate = 0;";
       return _db.Query<Keep>(sql);
     }
 
-    internal IEnumerable<Keep> GetPrivate()
+    public IEnumerable<Keep> GetPrivate()
     {
       string sql = "SELECT * FROM keeps";
       return _db.Query<Keep>(sql);
     }
 
-    internal Keep GetById(int Id)
+    public Keep GetById(int Id)
     {
       string sql = "SELECT * FROM keeps WHERE id = @Id";
       return _db.QueryFirstOrDefault<Keep>(sql, new { Id });
     }
 
-    internal Keep Create(Keep keepData)
+    public Keep Create(Keep keepData)
     {
       string sql = @"
             INSERT INTO keeps
@@ -47,7 +48,7 @@ namespace Keepr.Repositories
       return keepData;
     }
 
-    internal void Edit(Keep update)
+    public void Edit(Keep update)
     {
       string sql = @"
         UPDATE keeps
@@ -57,7 +58,7 @@ namespace Keepr.Repositories
       _db.Execute(sql, update);
 
     }
-    internal void Delete(int Id)
+    public void Delete(int Id)
     {
       string sql = "DELETE FROM keeps WHERE id = @Id";
       _db.Execute(sql, new { Id });

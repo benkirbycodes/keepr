@@ -1,7 +1,7 @@
 <template>
   <div class="home container-fluid bkgrnd">
     <div class="row p-3">
-      <div class="col-12 bg-dark p-2">
+      <div class="col-12 bg-dark rounded p-2">
         <form @submit.prevent="addFilter">
           <label class="text-white" for="search">
             Search

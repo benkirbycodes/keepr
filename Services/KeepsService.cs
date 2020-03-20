@@ -33,10 +33,15 @@ namespace Keepr.Services
       foreach (var result in results)
       {
         string lowerName = result.Name.ToLower();
-        if (Filters.Contains(lowerName))
+        foreach (var filterName in Filters)
         {
-          Filtered.Add(result);
+          if (lowerName.Contains(filterName))
+          {
+            Filtered.Add(result);
+
+          }
         }
+
       }
       return Filtered;
     }

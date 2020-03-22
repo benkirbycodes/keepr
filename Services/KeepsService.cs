@@ -9,9 +9,9 @@ namespace Keepr.Services
 {
   public class KeepsService
   {
-    private readonly KeepsRepository _repo;
+    private readonly IKeepsRepository _repo;
     public List<Keep> Filtered { get; set; } = new List<Keep>();
-    public KeepsService(KeepsRepository repo)
+    public KeepsService(IKeepsRepository repo)
     {
       _repo = repo;
     }
@@ -25,7 +25,7 @@ namespace Keepr.Services
     {
       var results = _repo.Get();
 
-      //Parsing string into Filters string[]
+      //Null check, Parsing string into Filters string[]
       if (filters == null)
       {
         return results;

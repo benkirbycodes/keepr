@@ -32,7 +32,7 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       };
     }
-    [HttpGet("filter/{filters}")]
+    [HttpGet("filter={filters}")]
     public ActionResult<IEnumerable<Keep>> GetFiltered(string filters)
     {
       try

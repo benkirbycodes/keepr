@@ -31,13 +31,8 @@ export default new Vuex.Store({
     },
     concatFilters(state) {
       let filters = state.filters;
-      filters.forEach((f, index) => {
-        for (let i = 0; i < f.length; i++) {
-          f = f.replace(/\s/g, "_");
-          filters[index] = f;
-        }
-      });
-      let str = filters.join("-");
+
+      let str = filters.join("&");
       state.filterString = str;
     }
   },

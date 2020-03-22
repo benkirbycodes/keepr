@@ -9,9 +9,9 @@ namespace Keepr.Services
 {
   public class KeepsService
   {
-    private readonly IKeepsRepository _repo;
+    private readonly KeepsRepository _repo;
     public List<Keep> Filtered { get; set; } = new List<Keep>();
-    public KeepsService(IKeepsRepository repo)
+    public KeepsService(KeepsRepository repo)
     {
       _repo = repo;
     }
@@ -30,8 +30,8 @@ namespace Keepr.Services
       {
         return results;
       }
-      filters = filters.Replace('_', ' ').ToLower();
-      string[] Filters = filters.Split('-');
+      filters = filters.ToLower();
+      string[] Filters = filters.Split('&');
 
       //Filter 'results' for those that contain filters in Name or Desc
       foreach (var result in results)

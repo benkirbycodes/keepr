@@ -13,7 +13,7 @@ export default {
     async getFilteredKeeps({ commit, dispatch }) {
       let filter = this.state.filterString;
       try {
-        let res = await api.get("keeps/filter/" + filter);
+        let res = await api.get("keeps/filter=" + filter);
         commit("setResource", { resource: "publicKeeps", data: res.data });
       } catch (error) {
         console.error(error);

@@ -1,106 +1,81 @@
-// using Xunit;
-// using Keepr.Services;
-// using Keepr.Repositories;
-// using System.Collections.Generic;
-// using Keepr.Models;
-// using System.Data;
-// using Moq;
-// using Keepr.Interfaces;
+using Xunit;
+using Keepr.Services;
+using Keepr.Repositories;
+using System.Collections.Generic;
+using Keepr.Models;
+using System.Data;
+using Moq;
+using Keepr.Interfaces;
+using System.Linq;
 
-// namespace Keepr
-// {
-//   public class Test
-//   {
-
-
-//     [Fact]
-//     public void PassingTest()
-//     {
-//       Assert.Equal(4, Add(2, 2));
-//     }
-
-//     [Fact]
-//     public void FailingTest()
-//     {
-//       Assert.Equal(5, Add(2, 2));
-//     }
-
-//     int Add(int x, int y)
-//     {
-//       return x + y;
-//     }
+namespace Keepr
+{
+  public class KeepsServiceTests
+  {
+    private readonly KeepsService keepsService;
+    private readonly Mock<IKeepsRepository> moqKeepsRepository;
 
 
+    public KeepsServiceTests()
+    {
+      moqKeepsRepository = new Mock<IKeepsRepository>();
+      keepsService = new KeepsService(moqKeepsRepository.Object);
+    }
 
-//     [Theory]
-//     [InlineData(3)]
-//     [InlineData(5)]
-//     [InlineData(6)]
-//     public void MyFirstTheory(int value)
-//     {
-//       Assert.True(IsOdd(value));
-//     }
+    [Fact] //Checks if Get returns List<Keep>
+    public void CanGetResults()
+    {
+      moqKeepsRepository.Setup(repo => repo.Get()).Returns(new List<Keep>());
 
-//     bool IsOdd(int value)
-//     {
-//       return value % 2 == 1;
-//     }
+      var result = keepsService.Get();
+
+      Assert.Equal(new List<Keep>(), result);
+    }
 
 
 
-//     [Theory]
-//     [InlineData("an")]
-//     public void MySecondTheory(string value)
-//     {
-//       Assert.True(IsAn(value));
-//     }
-//     bool IsAn(string value)
-//     {
-//       return value == "an";
-//     }
+    [Fact] //Checks if GetPrivate returns private keep
+    public void CanGetPrivate()
+    {
+      moqKeepsRepository.Setup(repo => repo.GetPrivate()).Returns(new List<Keep>{
+          new Keep {IsPrivate= true}
+        });
+      var result = keepsService.GetPrivate();
+
+      Assert.True(result.First().IsPrivate);
+    }
+
+    [Fact] //Tests if GetById can get by Id
+    public void CanGetById()
+    {
+      moqKeepsRepository.Setup(repo => repo.GetById(1)).Returns(
+          new Keep { Id = 1 }
+        );
+      var result = keepsService.GetById(1);
+
+      Assert.Equal(1, result.Id);
+      Assert.NotEqual(2, result.Id);
+    }
+
+    [Fact]
+    public void CanCreate()
+    {
+      Keep newKeep = new Keep { Name = "newKeep" };
+
+      moqKeepsRepository.Setup(repo => repo.Create(newKeep)).Returns(newKeep);
+
+      var result = keepsService.Create(newKeep);
+
+      Assert.Equal(newKeep, result);
+    }
+
+    [Fact] //How do I test a method that calls another method inside it? Something to do with Dependancy Injection. Pass instance of Interface as an arg?
+    public void CanEdit()
+    {
+
+    }
 
 
+  }
 
-
-
-
-//     [Theory]
-//     [MemberData(nameof(Data))]
-//     public void CanFilter(string filters, List<Keep> expected)
-//     {
-
-//       var _repo = new Mock<IKeepsRepository>();
-//       _repo.Setup(repo => repo.Get()).Returns();
-//   //Returns should be whatever .Get() would normall return
-//       //Moq verify look up 
-
-//       var keepsService = new KeepsService(_repo.Object);
-
-//       var result = keepsService.GetFiltered(filters);
-
-//       Assert.Equal(expected, result);
-//     }
-//     public static IEnumerable<object[]> Data
-//     {
-//       get
-//       {
-//         List<Keep> list = new List<Keep>()
-//           {
-//             new Keep() { Name = "ansel adams", Description = "photograph" },
-//             new Keep() { Name = "wassily kandinsky", Description = "painting" }
-//           };
-
-
-//         return new List<object[]>
-//         {
-//                 new object[] { "ansel", list[0]},
-//                 new object[] { "an", list},
-//                 new object[] { "photo", list[0]},
-//                 new object[] { "paint", list[1]},
-//                 new object[] {"this",  null}
-//         };
-//       }
-//     }
-//   }
-
-// }
+}

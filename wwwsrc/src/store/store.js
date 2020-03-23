@@ -30,9 +30,7 @@ export default new Vuex.Store({
       state[payload.resource] = payload.data;
     },
     concatFilters(state) {
-      let filters = state.filters;
-
-      let str = filters.join("&");
+      let str = state.filters.join("&").toLowerCase();
       state.filterString = str;
     }
   },

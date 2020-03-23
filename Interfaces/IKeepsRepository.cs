@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using System.Data;
 using Keepr.Models;
 
 namespace Keepr.Interfaces
 {
-  public interface IKeepsRepository
+  public interface IKeepsRepository<Keep>
   {
     IEnumerable<Keep> Get();
     IEnumerable<Keep> GetPrivate();

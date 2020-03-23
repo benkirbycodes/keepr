@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Data;
 using Keepr.Models;
@@ -7,7 +6,7 @@ using Keepr.Interfaces;
 
 namespace Keepr.Repositories
 {
-  public class KeepsRepository : IKeepsRepository
+  public class KeepsRepository : IKeepsRepository<Keep>
   {
 
     private readonly IDbConnection _db;

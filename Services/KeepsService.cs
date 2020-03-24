@@ -9,9 +9,9 @@ namespace Keepr.Services
 {
   public class KeepsService
   {
-    private readonly IKeepsRepository<Keep> _repo;
+    private readonly KeepsRepository _repo;
     public List<Keep> Filtered { get; set; } = new List<Keep>();
-    public KeepsService(IKeepsRepository<Keep> repo)
+    public KeepsService(KeepsRepository repo)
     {
       _repo = repo;
     }

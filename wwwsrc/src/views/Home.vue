@@ -14,7 +14,7 @@
               required
             />
           </label>
-          <button class="btn-lg text-white" type="submit">Submit</button>
+          <button class="ml-1 btn-sm search-btn btn-outline-light text-white" type="submit">Submit</button>
         </form>
         <div v-if="filters.length" class="rounded filters">
           <span v-for="(filter,i) in filters" :key="i" class="m-1 badge badge-pill badge-light">
@@ -80,7 +80,7 @@ export default {
 };
 </script>
 
-<style>
+<style >
 .bkgrnd {
   background-image: linear-gradient(to bottom right, purple, white);
 }
@@ -101,5 +101,11 @@ input {
 }
 .filters {
   border: 1px solid white;
+}
+.search-btn {
+  background-color: purple;
+}
+.search-btn:hover {
+  background-color: rgb(228, 0, 228);
 }
 </style>

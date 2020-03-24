@@ -3,7 +3,7 @@ using Keepr.Models;
 
 namespace Keepr.Interfaces
 {
-  public interface IKeepsRepository<Keep>
+  public interface IKeepsRepository
   {
     IEnumerable<Keep> Get();
     IEnumerable<Keep> GetPrivate();

@@ -6,7 +6,7 @@ using Keepr.Interfaces;
 
 namespace Keepr.Repositories
 {
-  public class KeepsRepository : IKeepsRepository<Keep>
+  public class KeepsRepository : IKeepsRepository
   {
 
     private readonly IDbConnection _db;

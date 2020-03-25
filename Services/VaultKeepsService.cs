@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using Keepr.Interfaces;
 using Keepr.Models;
-using Keepr.Repositories;
 
 namespace Keepr.Services
 {
@@ -48,6 +46,26 @@ namespace Keepr.Services
       if (exists == null) { throw new Exception("Invalid Id"); }
       _repo.Delete(exists.Id);
       return "Successfully Deleted";
+    }
+
+    IEnumerable<Keep> IVaultKeepsRepository.GetByVaultId(int vaultId, string userId)
+    {
+      throw new NotImplementedException();
+    }
+
+    public VaultKeep GetById(int vaultId, int keepId)
+    {
+      throw new NotImplementedException();
+    }
+
+    VaultKeep IVaultKeepsRepository.Create(VaultKeep vaultKeepData)
+    {
+      throw new NotImplementedException();
+    }
+
+    public void Delete(int Id)
+    {
+      throw new NotImplementedException();
     }
   }
 }

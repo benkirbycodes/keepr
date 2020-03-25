@@ -1,15 +1,14 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
+using Keepr.Interfaces;
 using Keepr.Models;
-using Keepr.Repositories;
 
 namespace Keepr.Services
 {
   public class VaultsService
   {
-    private readonly VaultsRepository _repo;
-    public VaultsService(VaultsRepository repo)
+    private readonly IVaultsRepository _repo;
+    public VaultsService(IVaultsRepository repo)
     {
       _repo = repo;
     }

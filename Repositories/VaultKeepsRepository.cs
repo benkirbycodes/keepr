@@ -1,12 +1,12 @@
-using System;
 using System.Collections.Generic;
 using System.Data;
 using Keepr.Models;
 using Dapper;
+using Keepr.Interfaces;
 
 namespace Keepr.Repositories
 {
-  public class VaultKeepsRepository
+  public class VaultKeepsRepository : IVaultKeepsRepository
   {
     private readonly IDbConnection _db;
 
@@ -17,19 +17,19 @@ namespace Keepr.Repositories
 
 
 
-    internal IEnumerable<Keep> GetByVaultId(int vaultId, string userId)
+    public IEnumerable<Keep> GetByVaultId(int vaultId, string userId)
     {
       string sql = "SELECT k.* FROM vaultkeeps vk INNER JOIN keeps k ON k.id = vk.keepId WHERE (vaultId = @vaultId AND vk.userId = @userId);";
       return _db.Query<Keep>(sql, new { vaultId, userId });
     }
-    internal VaultKeep GetById(int vaultId, int keepId)
+    public VaultKeep GetById(int vaultId, int keepId)
     {
       string sql = "SELECT * FROM vaultkeeps WHERE (vaultId = @vaultId AND keepId = @keepId)";
       return _db.QueryFirstOrDefault<VaultKeep>(sql, new { vaultId, keepId });
 
     }
 
-    internal VaultKeep Create(VaultKeep vaultKeepData)
+    public VaultKeep Create(VaultKeep vaultKeepData)
     {
       string sql = @"
             REPLACE INTO vaultkeeps
@@ -44,7 +44,7 @@ namespace Keepr.Repositories
     }
 
 
-    internal void Delete(int Id)
+    public void Delete(int Id)
     {
       string sql = "DELETE FROM vaultkeeps WHERE id = @Id";
       _db.Execute(sql, new { Id });

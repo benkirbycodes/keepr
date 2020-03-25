@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Data;
 using Keepr.Models;
 using Dapper;
+using Keepr.Interfaces;
 
 namespace Keepr.Repositories
 {
-  public class VaultsRepository
+  public class VaultsRepository : IVaultsRepository
   {
     private readonly IDbConnection _db;
 
@@ -17,13 +18,13 @@ namespace Keepr.Repositories
 
 
 
-    internal Vault GetById(int Id)
+    public Vault GetById(int Id)
     {
       string sql = "SELECT * FROM vaults WHERE id = @Id";
       return _db.QueryFirstOrDefault<Vault>(sql, new { Id });
     }
 
-    internal Vault Create(Vault vaultData)
+    public Vault Create(Vault vaultData)
     {
       string sql = @"
             INSERT INTO vaults
@@ -38,13 +39,13 @@ namespace Keepr.Repositories
     }
 
 
-    internal void Delete(int Id)
+    public void Delete(int Id)
     {
       string sql = "DELETE FROM vaults WHERE id = @Id";
       _db.Execute(sql, new { Id });
     }
 
-    internal IEnumerable<Vault> Get()
+    public IEnumerable<Vault> Get()
     {
       string sql = @"SELECT * FROM vaults";
       return _db.Query<Vault>(sql);

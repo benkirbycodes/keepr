@@ -48,24 +48,6 @@ namespace Keepr.Services
       return "Successfully Deleted";
     }
 
-    IEnumerable<Keep> IVaultKeepsRepository.GetByVaultId(int vaultId, string userId)
-    {
-      throw new NotImplementedException();
-    }
 
-    public VaultKeep GetById(int vaultId, int keepId)
-    {
-      throw new NotImplementedException();
-    }
-
-    VaultKeep IVaultKeepsRepository.Create(VaultKeep vaultKeepData)
-    {
-      throw new NotImplementedException();
-    }
-
-    public void Delete(int Id)
-    {
-      throw new NotImplementedException();
-    }
   }
 }

@@ -36,6 +36,7 @@ namespace Keepr.Controllers
     public ActionResult<IEnumerable<Keep>> GetFiltered(string filters)
     {
       try
+
       {
         return Ok(_ks.GetFiltered(filters));
       }

@@ -27,7 +27,7 @@ namespace Keepr.Services
 
 
       //Null check, Parsing string into Filters string[]
-      if (filters == null)
+      if (filters == null || filters == string.Empty || filters == "")
       {
         return results;
       }
